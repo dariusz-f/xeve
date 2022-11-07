@@ -144,7 +144,7 @@ jobs:
       - name: Build xeve baseline
         run: |
           git --version
-          ls -la
+          ls
           git log
           echo "======================="
           mkdir build
