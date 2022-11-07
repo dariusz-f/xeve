@@ -65,6 +65,15 @@ jobs:
           cmake ..
           make
           
+          echo "ls ---------------------"
+          ls
+          echo "src_base ---------------------"
+          cd src_base
+          ls
+          echo "Release ---------------------"
+          cd Release
+          ls
+          
       - name: 'Upload executable Artifact'
         uses: actions/upload-artifact@v3
         with:
