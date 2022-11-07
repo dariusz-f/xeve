@@ -86,10 +86,16 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set up MinGW
-        uses: egor-tensin/setup-mingw@v2
-        with:
-          platform: x64
+#       - name: Set up MinGW
+#         uses: egor-tensin/setup-mingw@v2
+#         with:
+#           platform: x64
+
+      - name: ================== DEBUG ======
+        run: |
+          cd c:\
+          ls
+          gcc --version
           
       - name: Get CMake
         uses: jwlawson/actions-setup-cmake@v1.13.0
@@ -123,10 +129,10 @@ jobs:
         with:
           fetch-depth: 0
           
-      - name: Set up MinGW
-        uses: egor-tensin/setup-mingw@v2
-        with:
-          platform: x64
+#       - name: Set up MinGW
+#         uses: egor-tensin/setup-mingw@v2
+#         with:
+#           platform: x64
           
       - name: Get CMake
         uses: jwlawson/actions-setup-cmake@v1.13.0
