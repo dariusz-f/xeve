@@ -93,12 +93,53 @@ jobs:
 
       - name: ================== DEBUG ======
         run: |
+          gcc --version
+          cmake --version
+          make --version
+          
+          echo "===== C: ====="
           cd c:\
           ls
-          gcc --version
           
-      - name: Get CMake
-        uses: jwlawson/actions-setup-cmake@v1.13.0
+          echo "===== actions ====="
+          cd c:\actions
+          ls
+          
+          echo "===== image ====="
+          cd c:\image
+          ls
+          
+          echo "===== Microsoft ====="
+          cd c:\Microsoft
+          ls
+          
+          echo "===== msys64 ====="
+          cd c:\msys64
+          ls
+          
+          echo "===== Packages ====="
+          cd c:\Packages
+          ls
+          
+          echo "===== runners ====="
+          cd c:\runners
+          ls
+          
+          echo "===== shells ====="
+          cd c:\shells
+          ls
+          
+          echo "===== tools ====="
+          cd c:\tools
+          ls
+          
+          echo "===== vcpkg ====="
+          cd c:\vcpkg
+          ls
+
+          
+#       - name: Get CMake
+#         uses: jwlawson/actions-setup-cmake@v1.13.0
         
       - name: Build xeve baseline
         run: |
