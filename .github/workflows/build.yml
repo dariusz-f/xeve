@@ -101,6 +101,10 @@ jobs:
           echo "app ---------------------"
           cd ../app
           ls
+          
+          echo "bin ---------------------"
+          cd ../bin
+          ls
                  
       - name: 'Upload executable Artifact'
         uses: actions/upload-artifact@v3
@@ -137,6 +141,10 @@ jobs:
           ls
           echo "app ---------------------"
           cd ../app
+          ls
+          
+          echo "bin ---------------------"
+          cd ../bin
           ls
           
       - name: 'Upload executable Artifact'
