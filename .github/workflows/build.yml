@@ -96,8 +96,12 @@ jobs:
           pwd
           echo "-----------------------------------------"
           ls
-          cd build
-          echo "--- build --------------------------------------"
+          cd bin
+          echo "--- bin --------------------------------------"
+          ls
+          
+          cd ../app
+          echo "--- app --------------------------------------"
           ls
           
 # TODO: need to check build paths on Windows          
