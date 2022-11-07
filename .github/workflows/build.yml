@@ -98,29 +98,22 @@ jobs:
           echo "src_base ---------------------"
           cd src_base
           ls
-          echo "Release ---------------------"
-          cd Release
+          echo "app ---------------------"
+          cd ../app
           ls
                  
       - name: 'Upload executable Artifact'
         uses: actions/upload-artifact@v3
         with:
-          name: xeveb_app.exe-windows-artifact
+          name: xeveb_app-windows-artifact
           path: build/bin/xeveb_app.exe
           retention-days: 5
           
-      - name: 'Upload library Artifact'
+      - name: 'Upload library Artifacts'
         uses: actions/upload-artifact@v3
         with:
-          name: xeveb.dll-windows-artifact
-          path: build/src_base/Release/xeveb.dll
-          retention-days: 5
-          
-      - name: 'Upload import-library Artifact'
-        uses: actions/upload-artifact@v3
-        with:
-          name: xeveb.lib-windows-artifact
-          path: build/src_base/static/lib/Release/xeveb.lib
+          name: libxeveb-windows-artifact
+          path: build/src_base/libxeveb.*
           retention-days: 5
 
   build-main-windows:
@@ -137,23 +130,26 @@ jobs:
           cmake .. -G "MinGW Makefiles"
           make
           
+          echo "ls ---------------------"
+          ls
+          echo "src_main ---------------------"
+          cd src_main
+          ls
+          echo "app ---------------------"
+          cd ../app
+          ls
+          
       - name: 'Upload executable Artifact'
         uses: actions/upload-artifact@v3
         with:
-          name: xeve_app.exe-windows-artifact
+          name: xeve_app-windows-artifact
           path: build/bin/xeve_app.exe
           retention-days: 5
           
-      - name: 'Upload library Artifact'
+      - name: 'Upload library Artifacts'
         uses: actions/upload-artifact@v3
         with:
-          name: xeve.dll-windows-artifact
-          path: build/src_base/Release/xeve.dll
+          name: libxeve-windows-artifact
+          path: build/src_main/libxeve.*
           retention-days: 5
-          
-      - name: 'Upload import-library Artifact'
-        uses: actions/upload-artifact@v3
-        with:
-          name: xeve.lib-windows-artifact
-          path: build/src_base/static/lib/Release/xeve.lib
-          retention-days: 5
+  
