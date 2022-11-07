@@ -143,6 +143,10 @@ jobs:
         
       - name: Build xeve baseline
         run: |
+          git --version
+          ls -la
+          git log
+          echo "======================="
           mkdir build
           cd build
           cmake .. -G "MinGW Makefiles" -DSET_PROF=BASE
