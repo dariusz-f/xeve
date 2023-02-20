@@ -117,7 +117,7 @@ jobs:
         # debsign -k ${{ secrets.GPG_KEY_ID }} ../xeve_${{ steps.vars.outputs.TAG }}-1ubuntu1.dsc
 
     - name: 'Upload Package files'
-      # if: ${{ false }}
+      if: ${{ false }}
       uses: actions/upload-artifact@v3
       with:
         name: download-2
@@ -126,7 +126,13 @@ jobs:
 
     - name: Push package to launchpad
       run: |
-        dput -u ppa:mpeg5/xeve xeve_${{ steps.vars.outputs.TAG }}-1ubuntu1_source.changes
+        echo --------
+        pwd
+        ls -la
+        FILE=$(find ./ -maxdepth 1 -iname "*source.changes" -printf "%f\n")
+        
+        #dput -u ppa:mpeg5/xeve xeve_${{ steps.vars.outputs.TAG }}-1ubuntu1_source.changes
+        dput -u ppa:mpeg5/xeve $FILE
         echo "Package placed on: ${{ env.PPA_URL }}  :globe_with_meridians:" >> $GITHUB_STEP_SUMMARY
 
     - name: Upload logs on fail
