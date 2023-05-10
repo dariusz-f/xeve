@@ -101,23 +101,23 @@ jobs:
           # curl -o xeve-main1.dirs https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/xeve-main1.dirs
           # curl -o xeve-main1.install https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/xeve-main1.install
 
-          mv ../packaging/README.Debian README.Debian
-          mv ../packaging/README.source README.source
-          mv ../packaging/changelog changelog
-          mv ../packaging/compat compat
-          mv ../packaging/control control
-          mv ../packaging/copyright copyright
-          mv ../packaging/files files
-          mv ../packaging/rules rules
-          mv ../packaging/xeve-base-dev.dirs xeve-base-dev.dirs
-          mv ../packaging/xeve-base-dev.install xeve-base-dev.install
-          mv ../packaging/xeve-base-docs.docs xeve-base-docs.docs
-          mv ../packaging/xeve-base1.dirs xeve-base1.dirs
-          mv ../packaging/xeve-base1.install xeve-base1.install
-          mv ../packaging/xeve-main-dev.install xeve-main-dev.install
-          mv ../packaging/xeve-main-docs.docs xeve-main-docs.docs
-          mv ../packaging/xeve-main1.dirs xeve-main1.dirs
-          mv ../packaging/xeve-main1.install xeve-main1.install
+          mv ../packaging/debian/README.Debian README.Debian
+          mv ../packaging/debian/README.source README.source
+          mv ../packaging/debian/changelog changelog
+          mv ../packaging/debian/compat compat
+          mv ../packaging/debian/control control
+          mv ../packaging/debian/copyright copyright
+          mv ../packaging/debian/files files
+          mv ../packaging/debian/rules rules
+          mv ../packaging/debian/xeve-base-dev.dirs xeve-base-dev.dirs
+          mv ../packaging/debian/xeve-base-dev.install xeve-base-dev.install
+          mv ../packaging/debian/xeve-base-docs.docs xeve-base-docs.docs
+          mv ../packaging/debian/xeve-base1.dirs xeve-base1.dirs
+          mv ../packaging/debian/xeve-base1.install xeve-base1.install
+          mv ../packaging/debian/xeve-main-dev.install xeve-main-dev.install
+          mv ../packaging/debian/xeve-main-docs.docs xeve-main-docs.docs
+          mv ../packaging/debian/xeve-main1.dirs xeve-main1.dirs
+          mv ../packaging/debian/xeve-main1.install xeve-main1.install
 
 
           #Remove example and template files
