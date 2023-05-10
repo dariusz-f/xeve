@@ -59,7 +59,6 @@ jobs:
           rm -rf xeve-$TAG/.github
 
           tar -czf xeve-$TAG.tar.gz xeve-$TAG
-          mv xeve-$TAG.tar.gz xeve-$TAG
 
           echo "Package created form TAG: $TAG :bookmark:" >> $GITHUB_STEP_SUMMARY
 
@@ -74,7 +73,7 @@ jobs:
           DEBEMAIL=${{ env.debemail }}
           DEBFULLNAME=${{ env.debfullname }}
           export DEBEMAIL DEBFULLNAME
-          dh_make -f xeve-${{ steps.vars.outputs.TAG }}.tar.gz -c bsd -e ${{ env.maintainer_mail }} -l -y
+          dh_make -f ../xeve-${{ steps.vars.outputs.TAG }}.tar.gz -c bsd -e ${{ env.maintainer_mail }} -l -y
 
           echo "Debemail in package: ${{ env.debemail }}  :email:" >> $GITHUB_STEP_SUMMARY
           echo "Debfullname in package: ${{ env.debfullname }}  :speech_balloon:" >> $GITHUB_STEP_SUMMARY
