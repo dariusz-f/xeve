@@ -78,6 +78,14 @@ jobs:
           echo "Debemail in package: ${{ env.debemail }}  :email:" >> $GITHUB_STEP_SUMMARY
           echo "Debfullname in package: ${{ env.debfullname }}  :speech_balloon:" >> $GITHUB_STEP_SUMMARY
 
+          echo -e "--------------------------------------------"
+          pwd
+          ls -la
+          cd ..
+          pwd
+          ls -la
+          echo -e "--------------------------------------------"
+
       - name: Edit sources
         # TODO: Files from this step have to be later integrated with project repository, they shouldn't be fetched from external repo
         run: |
