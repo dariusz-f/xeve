@@ -66,43 +66,62 @@ jobs:
         run: |
           sudo apt install packaging-dev gnupg
 
-      # - name: Prepare package (dh_make)
-      #   run: |
-      #     cd xeve-${{ steps.vars.outputs.TAG }}
+      - name: Prepare package (dh_make)
+        run: |
+          cd xeve-${{ steps.vars.outputs.TAG }}
 
-      #     DEBEMAIL=${{ env.debemail }}
-      #     DEBFULLNAME=${{ env.debfullname }}
-      #     export DEBEMAIL DEBFULLNAME
-      #     dh_make -f ../xeve-${{ steps.vars.outputs.TAG }}.tar.gz -c bsd -e ${{ env.maintainer_mail }} -l -y
+          DEBEMAIL=${{ env.debemail }}
+          DEBFULLNAME=${{ env.debfullname }}
+          export DEBEMAIL DEBFULLNAME
+          dh_make -f ../xeve-${{ steps.vars.outputs.TAG }}.tar.gz -c bsd -e ${{ env.maintainer_mail }} -l -y
 
-      #     echo "Debemail in package: ${{ env.debemail }}  :email:" >> $GITHUB_STEP_SUMMARY
-      #     echo "Debfullname in package: ${{ env.debfullname }}  :speech_balloon:" >> $GITHUB_STEP_SUMMARY
+          echo "Debemail in package: ${{ env.debemail }}  :email:" >> $GITHUB_STEP_SUMMARY
+          echo "Debfullname in package: ${{ env.debfullname }}  :speech_balloon:" >> $GITHUB_STEP_SUMMARY
 
-      # - name: Edit sources
-      #   # TODO: Files from this step have to be later integrated with project repository, they shouldn't be fetched from external repo
-      #   run: |
-      #     cd xeve-${{ steps.vars.outputs.TAG }}/debian
+      - name: Edit sources
+        # TODO: Files from this step have to be later integrated with project repository, they shouldn't be fetched from external repo
+        run: |
+          cd xeve-${{ steps.vars.outputs.TAG }}/debian
 
-      #     curl -o README.Debian https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/README.Debian
-      #     curl -o README.source https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/README.source
-      #     curl -o changelog https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/changelog
-      #     curl -o compat https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/compat
-      #     curl -o control https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/control
-      #     curl -o copyright https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/copyright
-      #     curl -o files https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/files
-      #     curl -o rules https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/rules
-      #     curl -o xeve-base-dev.dirs https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/xeve-base-dev.dirs
-      #     curl -o xeve-base-dev.install https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/xeve-base-dev.install
-      #     curl -o xeve-base-docs.docs https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/xeve-base-docs.docs
-      #     curl -o xeve-base1.dirs https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/xeve-base1.dirs
-      #     curl -o xeve-base1.install https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/xeve-base1.install
-      #     curl -o xeve-main-dev.install https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/xeve-main-dev.install
-      #     curl -o xeve-main-docs.docs https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/xeve-main-docs.docs
-      #     curl -o xeve-main1.dirs https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/xeve-main1.dirs
-      #     curl -o xeve-main1.install https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/xeve-main1.install
+          # curl -o README.Debian https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/README.Debian
+          # curl -o README.source https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/README.source
+          # curl -o changelog https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/changelog
+          # curl -o compat https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/compat
+          # curl -o control https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/control
+          # curl -o copyright https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/copyright
+          # curl -o files https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/files
+          # curl -o rules https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/rules
+          # curl -o xeve-base-dev.dirs https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/xeve-base-dev.dirs
+          # curl -o xeve-base-dev.install https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/xeve-base-dev.install
+          # curl -o xeve-base-docs.docs https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/xeve-base-docs.docs
+          # curl -o xeve-base1.dirs https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/xeve-base1.dirs
+          # curl -o xeve-base1.install https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/xeve-base1.install
+          # curl -o xeve-main-dev.install https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/xeve-main-dev.install
+          # curl -o xeve-main-docs.docs https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/xeve-main-docs.docs
+          # curl -o xeve-main1.dirs https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/xeve-main1.dirs
+          # curl -o xeve-main1.install https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/xeve-main1.install
 
-      #     #Remove example and template files
-      #     rm -rf *.ex
+          mv ../packaging/README.Debian README.Debian
+          mv ../packaging/README.source README.source
+          mv ../packaging/changelog changelog
+          mv ../packaging/compat compat
+          mv ../packaging/control control
+          mv ../packaging/copyright copyright
+          mv ../packaging/files files
+          mv ../packaging/rules rules
+          mv ../packaging/xeve-base-dev.dirs xeve-base-dev.dirs
+          mv ../packaging/xeve-base-dev.install xeve-base-dev.install
+          mv ../packaging/xeve-base-docs.docs xeve-base-docs.docs
+          mv ../packaging/xeve-base1.dirs xeve-base1.dirs
+          mv ../packaging/xeve-base1.install xeve-base1.install
+          mv ../packaging/xeve-main-dev.install xeve-main-dev.install
+          mv ../packaging/xeve-main-docs.docs xeve-main-docs.docs
+          mv ../packaging/xeve-main1.dirs xeve-main1.dirs
+          mv ../packaging/xeve-main1.install xeve-main1.install
+
+
+          #Remove example and template files
+          rm -rf *.ex
           
       - name: Archive files
         uses: actions/upload-artifact@v3
