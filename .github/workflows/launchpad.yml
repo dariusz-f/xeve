@@ -119,9 +119,16 @@ jobs:
           mv ../packaging/debian/xeve-main1.dirs xeve-main1.dirs
           mv ../packaging/debian/xeve-main1.install xeve-main1.install
 
-
           #Remove example and template files
           rm -rf *.ex
+
+          echo -e "--------------------------------------------------------"
+          pwd
+          ls -la
+          cd ..
+          pwd
+          ls -la
+          echo -e "---------------------------------------------------------"
           
       - name: Archive files
         uses: actions/upload-artifact@v3
