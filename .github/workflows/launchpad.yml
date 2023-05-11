@@ -123,6 +123,9 @@ jobs:
           rm -rf *.ex
           
           dch -r "" --distribution focal
+          echo -e "-------------------------------------------------"
+          cat changelog
+          echo -e "-------------------------------------------------"
           
       - name: Archive files
         uses: actions/upload-artifact@v3
