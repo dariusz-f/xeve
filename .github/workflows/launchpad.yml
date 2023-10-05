@@ -128,8 +128,9 @@ jobs:
           
           echo -e "-------------------------------------------------"
           ls -al
-          rm changelog
-          dch --create --distribution focal
+          cat changelog
+          cd ..
+          dch --append
           echo -e "-------------------------------------------------"
           cat changelog
           echo -e "-------------------------------------------------"
