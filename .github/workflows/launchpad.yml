@@ -126,6 +126,7 @@ jobs:
           #Remove example and template files
           rm -rf *.ex
           
+          cd ..
           dch --create --distribution focal
           echo -e "-------------------------------------------------"
           cat changelog
