@@ -83,6 +83,10 @@ jobs:
         run: |
           cd xeve-${{ steps.vars.outputs.TAG }}/debian
 
+          DEBEMAIL=${{ env.debemail }}
+          DEBFULLNAME=${{ env.debfullname }}
+          export DEBEMAIL DEBFULLNAME
+
           # curl -o README.Debian https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/README.Debian
           # curl -o README.source https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/README.source
           # curl -o changelog https://raw.githubusercontent.com/dkozinski/xeve/debian-debian/debian/changelog
@@ -103,7 +107,7 @@ jobs:
 
           mv ../packaging/debian/README.Debian README.Debian
           mv ../packaging/debian/README.source README.source
-          mv ../packaging/debian/changelog changelog
+          # mv ../packaging/debian/changelog changelog
           mv ../packaging/debian/compat compat
           mv ../packaging/debian/control control
           mv ../packaging/debian/copyright copyright
@@ -122,7 +126,7 @@ jobs:
           #Remove example and template files
           rm -rf *.ex
           
-          dch -r --distribution focal
+          dch --create --distribution focal
           echo -e "-------------------------------------------------"
           cat changelog
           echo -e "-------------------------------------------------"
