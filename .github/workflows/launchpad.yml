@@ -128,7 +128,7 @@ jobs:
           
           echo -e "-------------------------------------------------"
           cat changelog
-          gbp dch --release
+          gbp buildpackage --git-builder="debuild -i -us -uc -b"
           echo -e "-------------------------------------------------"
           cat changelog
           echo -e "-------------------------------------------------"
