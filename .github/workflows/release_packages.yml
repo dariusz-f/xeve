@@ -13,6 +13,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
         profile: [BASE, MAIN]
+        build: [PC, ARM]
 
     runs-on: ${{matrix.os}}
     steps:
@@ -25,6 +26,12 @@ jobs:
         run: |
           sudo apt-get update -qq && sudo apt-get -y install \
           cmake
+
+      - name: Install dependencies (ARM)
+        if: ${{matrix.os == 'ubuntu-latest' && matrix.build == 'ARM'}}
+        run: |
+          sudo apt-get update -qq && sudo apt-get -y install \
+          cmake gcc-arm-linux-gnueabi gcc-aarch64-linux-gnu binutils-aarch64-linux-gnu
 
       - name: Build Linux versions of xeve, generate packages and md5
         if: ${{matrix.os == 'ubuntu-latest'}}
@@ -41,6 +48,15 @@ jobs:
           mkdir build
           cd build
           cmake .. -G "MinGW Makefiles" -DSET_PROF=${{matrix.profile}} -DBUILD_TYPE=Release
+          make
+          make package
+
+      - name: Build ARM versions of xeve, generate packages and md5
+        if: ${{matrix.os == 'ubuntu-latest' && matrix.build == 'ARM'}}
+        run: |
+          mkdir build
+          cd build
+          cmake .. -DSET_PROF=${{matrix.profile}} -DBUILD_TYPE=Release -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc -DCMAKE_SYSTEM_PROCESSOR=aarch64 -DARM=TRUE
           make
           make package
 
@@ -64,6 +80,16 @@ jobs:
             ${{ github.workspace }}/build/*.md5
           retention-days: 7
 
+      - name: 'Upload ARM artifacts'
+        if: ${{matrix.os == 'ubuntu-latest' && matrix.build == 'ARM'}}
+        uses: actions/upload-artifact@v4
+        with:
+          name: xeve-${{matrix.profile}}-ARM-packages-${{github.event.release.tag_name}}
+          path: |
+            ${{ github.workspace }}/build/*.deb
+            ${{ github.workspace }}/build/*.md5
+          retention-days: 7
+
       - name: Upload assets to GitHub Release
         uses: xresloader/upload-to-github-release@v1
         env:
@@ -73,3 +99,5 @@ jobs:
           update_latest_release: true
           draft: false
           overwrite: true
+  
+
